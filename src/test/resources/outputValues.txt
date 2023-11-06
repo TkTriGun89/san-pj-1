@@ -1,0 +1,6 @@
+Shape Type : CIRCLE, Area : 28.274333882308138, Perimeter : 18.84955592153876
+
+Shape Type : SQUARE, Area : 36.0, Perimeter : 24.0
+
+Shape Type : RECTANGLE, Area : 6.0, Perimeter : 10.0
+
