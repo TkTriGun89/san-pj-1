@@ -1,0 +1,8 @@
+com\factoryshapes\ShapesCaller.class
+com\factoryshapes\ShapesCalculator.class
+com\factoryshapes\Circle.class
+com\factoryshapes\Rectangle.class
+com\factoryshapes\IShapeFactory.class
+com\factoryshapes\ShapeFactory.class
+com\factoryshapes\Shapes.class
+com\factoryshapes\Square.class
