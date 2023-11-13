@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.factoryshapes.ShapesCheckerTest
--------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.297 s - in com.factoryshapes.ShapesCheckerTest

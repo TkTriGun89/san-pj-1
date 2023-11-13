@@ -1,7 +1,10 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-santek,com.factoryshapes,ShapeFactory,44,0,6,0,9,0,6,0,2,0
-santek,com.factoryshapes,Circle,19,0,0,0,5,0,3,0,3,0
-santek,com.factoryshapes,Rectangle,23,0,0,0,6,0,3,0,3,0
-santek,com.factoryshapes,Square,17,0,0,0,5,0,3,0,3,0
-santek,com.factoryshapes,ShapesCaller,28,0,0,0,8,0,2,0,2,0
-santek,com.factoryshapes,ShapesCalculator,134,0,10,0,42,0,9,0,4,0
+santek,com.factoryshapes.dao,InputData,0,24,0,0,0,11,0,7,0,7
+santek,com.factoryshapes.output,OutputterImpl,4,144,3,11,2,35,3,6,0,2
+santek,com.factoryshapes,ShapesProcessor,11,126,3,7,5,36,3,8,0,6
+santek,com.factoryshapes,ShapesMain,43,0,0,0,11,0,2,0,2,0
+santek,com.factoryshapes,ShapesSizeComparator,0,9,0,0,0,2,0,2,0,2
+santek,com.factoryshapes.shapes,ShapeFactoryImpl,8,36,2,4,2,7,2,4,0,2
+santek,com.factoryshapes.shapes,Rectangle,0,23,0,0,0,6,0,3,0,3
+santek,com.factoryshapes.shapes,Square,0,17,0,0,0,5,0,3,0,3
+santek,com.factoryshapes.shapes,Circle,0,19,0,0,0,5,0,3,0,3

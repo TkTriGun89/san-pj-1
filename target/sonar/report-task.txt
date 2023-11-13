@@ -2,5 +2,5 @@ projectKey=com.factoryshapes:santek
 serverUrl=http://localhost:9000
 serverVersion=9.8.0.63668
 dashboardUrl=http://localhost:9000/dashboard?id=com.factoryshapes%3Asantek
-ceTaskId=AYumkDuT9SK4X56e18tL
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYumkDuT9SK4X56e18tL
+ceTaskId=AYvK3hpqh_Mj5SKgSCfP
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYvK3hpqh_Mj5SKgSCfP
