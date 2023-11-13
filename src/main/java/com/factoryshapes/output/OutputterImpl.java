@@ -45,10 +45,10 @@ public class OutputterImpl implements IOutputter {
                         br.newLine();
                     }
                     if (shape instanceof Rectangle) {
-                        //Console
+                        //CONSOLE
                         System.out.println(shapeTypeOut + "RECTANGLE" + areaOut + ((Rectangle) shape).calculateArea() + perimeterOut
                                 + ((Rectangle) shape).calculatePerimeter() + System.lineSeparator());
-                        //File
+                        //FILE
                         br.write(shapeTypeOut + "RECTANGLE" + areaOut + ((Rectangle) shape).calculateArea() + perimeterOut
                                 + ((Rectangle) shape).calculatePerimeter() + System.lineSeparator());
                         br.newLine();
