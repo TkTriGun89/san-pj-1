@@ -1,32 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShapesMain.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">santek</a> &gt; <a href="index.source.html" class="el_package">com.factoryshapes</a> &gt; <span class="el_source">ShapesMain.java</span></div><h1>ShapesMain.java</h1><pre class="source lang-java linenums">package com.factoryshapes;
 
 import com.factoryshapes.dao.InputData;
-import com.factoryshapes.output.OutputterImpl;
+import com.factoryshapes.output.BaseOutputter;
+import com.factoryshapes.output.ConsoleOutputter;
+import com.factoryshapes.output.FileOutputter;
 import com.factoryshapes.shapes.ShapeFactoryImpl;
 import com.factoryshapes.shapes.Shapes;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-<span class="nc" id="L12">class ShapesMain {</span>
+<span class="nc" id="L15">class ShapesMain {</span>
     public static void main(String[] args) throws IOException {
-<span class="nc" id="L14">        String projectDir = System.getProperty(&quot;user.dir&quot;);</span>
-<span class="nc" id="L15">        String input = projectDir + &quot;/resources/inputValues.txt&quot;;</span>
-<span class="nc" id="L16">        String output = projectDir + &quot;/resources/outputValues.txt&quot;;</span>
-<span class="nc" id="L17">        ShapesProcessor processShapes = new ShapesProcessor(new ShapeFactoryImpl());</span>
-<span class="nc" id="L18">        ShapesProcessor outputWriter = new ShapesProcessor(new OutputterImpl());</span>
+<span class="nc" id="L17">        String projectDir = System.getProperty(&quot;user.dir&quot;);</span>
+<span class="nc" id="L18">        String input = projectDir + &quot;/resources/inputValues.txt&quot;;</span>
+<span class="nc" id="L19">        String output = projectDir + &quot;/resources/outputValues.txt&quot;;</span>
+<span class="nc" id="L20">        BaseOutputter fileOutputter = new FileOutputter();</span>
+<span class="nc" id="L21">        BaseOutputter consoleOutputter = new ConsoleOutputter();</span>
+<span class="nc" id="L22">        ShapesProcessor processShapes = new ShapesProcessor(new ShapeFactoryImpl());</span>
+<span class="nc" id="L23">        ShapesProcessor processFileOutput = new ShapesProcessor(fileOutputter);</span>
+<span class="nc" id="L24">        ShapesProcessor processConsoleOutput = new ShapesProcessor(consoleOutputter);</span>
 
         //1. Reads the input
-<span class="nc" id="L21">        Scanner inputScan = processShapes.readInput(input);</span>
+<span class="nc" id="L27">        Scanner inputScan = processShapes.readInput(input);</span>
         //1a. Extracts the input data
-<span class="nc" id="L23">        List&lt;InputData&gt; extractedValues = processShapes.extractInput(inputScan);</span>
+<span class="nc" id="L29">        List&lt;InputData&gt; extractedValues = processShapes.extractInput(inputScan);</span>
 
         //2. Builds the output
-<span class="nc" id="L26">        List&lt;Shapes&gt; outputList = processShapes.buildOutPut(extractedValues);</span>
+<span class="nc" id="L32">        List&lt;Shapes&gt; outputList = processShapes.buildOutPut(extractedValues);</span>
 
-        //3. Writes the output
-<span class="nc" id="L29">        outputWriter.writeOutput(outputList, output);</span>
-<span class="nc" id="L30">    }</span>
+        //2a Sort output list
+<span class="nc" id="L35">        Collections.sort(outputList, new ShapesSizeComparator());</span>
+
+        //3. Writes the file output
+<span class="nc" id="L38">        processFileOutput.writeOutput(outputList, output);</span>
+
+        //4. Writes the console output
+<span class="nc" id="L41">        processConsoleOutput.writeOutput(outputList,null);</span>
+<span class="nc" id="L42">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

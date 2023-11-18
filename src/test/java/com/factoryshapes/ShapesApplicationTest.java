@@ -1,7 +1,5 @@
 package com.factoryshapes;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,7 +9,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.factoryshapes.dao.InputData;
-import com.factoryshapes.output.OutputterImpl;
+import com.factoryshapes.output.BaseOutputter;
+import com.factoryshapes.output.ConsoleOutputter;
+import com.factoryshapes.output.FileOutputter;
 import com.factoryshapes.shapes.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -154,13 +154,24 @@ class ShapesApplicationTest {
         Path inPath = tempDir.resolve(inputFile);
         Path ouPath = tempDir.resolve(outputFile);
 
+        //Read Input
         ShapesProcessor psTest = new ShapesProcessor(new ShapeFactoryImpl());
         Scanner inputScan = psTest.readInput(inPath.toString());
         List<InputData> extractedValues = psTest.extractInput(inputScan);
+
+        //Build Output
         List<Shapes> outputList = psTest.buildOutPut(extractedValues);
 
-        ShapesProcessor writeOpTest = new ShapesProcessor(new OutputterImpl());
-        writeOpTest.writeOutput(outputList, ouPath.toString());
+        //Sort Output
+        Collections.sort(outputList, new ShapesSizeComparator());
+
+        //Write Output
+        BaseOutputter fileOutputter = new FileOutputter();
+        BaseOutputter consoleOutputter = new ConsoleOutputter();
+        ShapesProcessor processFileOutput = new ShapesProcessor(fileOutputter);
+        ShapesProcessor processConsoleOutput = new ShapesProcessor(consoleOutputter);
+        processFileOutput.writeOutput(outputList, ouPath.toString());
+        processConsoleOutput.writeOutput(outputList, ouPath.toString());
 
         String opContent = Files.readString(ouPath);
         String expectedOutput = "Shape Type : SQUARE, Area : 36.0, Perimeter : 24.0\r\n\r\nShape Type : CIRCLE, Area : 28.274333882308138, Perimeter : 18.84955592153876\r\n\r\nShape Type : RECTANGLE, Area : 6.0, Perimeter : 10.0";
@@ -181,7 +192,7 @@ class ShapesApplicationTest {
     @Test
     void testBuildOutputError(){
         try {
-            ShapesProcessor buildOpTest = new ShapesProcessor(new OutputterImpl());
+            ShapesProcessor buildOpTest = new ShapesProcessor(new ShapeFactoryImpl());
             assertInstanceOf(ArrayList.class, buildOpTest.buildOutPut(null));
         } catch (Exception e) {
         }
@@ -190,8 +201,12 @@ class ShapesApplicationTest {
     @Test
     void testWriteOutputError(){
         try {
-            ShapesProcessor writeOpTest = new ShapesProcessor(new OutputterImpl());
-            writeOpTest.writeOutput(null, null);
+            BaseOutputter fileOutputter = new FileOutputter();
+            BaseOutputter consoleOutputter = new ConsoleOutputter();
+            ShapesProcessor processFileOutput = new ShapesProcessor(fileOutputter);
+            ShapesProcessor processConsoleOutput = new ShapesProcessor(consoleOutputter);
+            processFileOutput.writeOutput(null, null);
+            processConsoleOutput.writeOutput(null, null);
         } catch (Exception e) {
             assertEquals("Cannot invoke \"java.util.List.sort(java.util.Comparator)\" because \"list\" is null", e.getMessage());
         }

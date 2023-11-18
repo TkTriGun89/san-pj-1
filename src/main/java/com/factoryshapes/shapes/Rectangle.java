@@ -20,4 +20,9 @@ public class Rectangle implements Shapes {
         return 2 * (length + breadth);
     }
 
+    @Override
+    public String getShapesName() {
+        return "RECTANGLE";
+    }
+
 }

@@ -4,8 +4,10 @@ public class InputData {
     private String shapeType;
     private long dimensionOne;
     private long dimensionTwo;
+    // D
 
     public InputData() {
+        //Constructor block.
     }
 
     public String getShapeType() {

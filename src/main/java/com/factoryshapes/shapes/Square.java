@@ -17,4 +17,9 @@ public class Square implements Shapes {
     public double calculatePerimeter() {
         return 4 * size;
     }
+
+    @Override
+    public String getShapesName() {
+        return "SQUARE";
+    }
 }

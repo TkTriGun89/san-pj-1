@@ -1,6 +1,7 @@
 package com.factoryshapes;
 
 import com.factoryshapes.dao.InputData;
+import com.factoryshapes.output.BaseOutputter;
 import com.factoryshapes.output.IOutputter;
 import com.factoryshapes.shapes.*;
 
@@ -14,9 +15,8 @@ public class ShapesProcessor {
     public ShapesProcessor(IShapeFactory shapeFactory) {
         this.shapeFactory = shapeFactory;
     }
-
-    protected IOutputter output;
-    public ShapesProcessor(IOutputter output) {
+    protected BaseOutputter output;
+    public ShapesProcessor(BaseOutputter output) {
         this.output = output;
     }
 
